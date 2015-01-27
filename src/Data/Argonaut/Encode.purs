@@ -16,12 +16,16 @@ module Data.Argonaut.Encode
     , jsonEmptyArray
     , jsonEmptyObject
     , jsonSingletonObject
+     
     )
   import Data.Char
   import Data.Maybe
   import Data.Either
   import Data.Foldable (foldr)
   import Data.Tuple (Tuple(..))
+  import Data.Function 
+
+  import qualified Data.Date as Date
 
   import qualified Data.StrMap as M
   import qualified Data.Map as Map
@@ -66,3 +70,13 @@ module Data.Argonaut.Encode
 
   instance encodeMap :: (Ord a, EncodeJson a, EncodeJson b) => EncodeJson (Map.Map a b) where
     encodeJson = encodeJson <<< Map.toList
+
+  foreign import fromJSDate """
+  function jsDate2Json(date) {return date;}
+  """ :: Date.JSDate -> Json 
+
+  instance encodeJsonJsDate :: EncodeJson Date.JSDate where
+    encodeJson = fromJSDate
+
+  instance encodeDate :: EncodeJson Date.Date where
+    encodeJson date = encodeJson $ Date.toJSDate date 

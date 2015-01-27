@@ -20,7 +20,7 @@ var paths = {
         },
         'Data.Argonaut.*': {
             dest: 'src/Data/Argonaut/README.md',
-            src: 'src/Data/Argonaut/*.purs'
+            src: 'src/Data/Argonaut/**/*.purs'
         }
     },
     test: 'test/**/*.purs'
