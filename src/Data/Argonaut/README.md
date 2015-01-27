@@ -308,4 +308,24 @@
     instance printerString :: Printer String
 
 
+## Module Data.Argonaut.Instances.Datetime
+
+### Type Class Instances
+
+    instance decodeJsonDate :: DecodeJson Date
+
+    instance decodeJsonJSDate :: DecodeJson JSDate
+
+    instance encodeDate :: EncodeJson Date
+
+    instance encodeJsonDate :: EncodeJson JSDate
+
+
+### Values
+
+    jsDate2Json :: JSDate -> Json
+
+    json2JSDate :: Json -> Maybe JSDate
+
+
 
