@@ -162,7 +162,11 @@
 
     instance decodeJsonChar :: DecodeJson Char
 
+    instance decodeJsonDate :: DecodeJson Date.Date
+
     instance decodeJsonEither :: (DecodeJson a, DecodeJson b) => DecodeJson (Either a b)
+
+    instance decodeJsonJSDate :: DecodeJson Date.JSDate
 
     instance decodeJsonJson :: DecodeJson Json
 
@@ -202,6 +206,8 @@
 
 ### Type Class Instances
 
+    instance encodeDate :: EncodeJson Date.Date
+
     instance encodeJsonArray :: (EncodeJson a) => EncodeJson [a]
 
     instance encodeJsonChar :: EncodeJson Char
@@ -214,6 +220,8 @@
 
     instance encodeJsonJString :: EncodeJson String
 
+    instance encodeJsonJsDate :: EncodeJson Date.JSDate
+
     instance encodeJsonJson :: EncodeJson Json
 
     instance encodeJsonMaybe :: (EncodeJson a) => EncodeJson (Maybe a)
@@ -225,6 +233,9 @@
     instance encodeMap :: (Ord a, EncodeJson a, EncodeJson b) => EncodeJson (Map.Map a b)
 
     instance encodeStrMap :: (EncodeJson a) => EncodeJson (M.StrMap a)
+
+
+### Values
 
 
 ## Module Data.Argonaut.JCursor
@@ -306,26 +317,6 @@
 ### Type Class Instances
 
     instance printerString :: Printer String
-
-
-## Module Data.Argonaut.Instances.Datetime
-
-### Type Class Instances
-
-    instance decodeJsonDate :: DecodeJson Date
-
-    instance decodeJsonJSDate :: DecodeJson JSDate
-
-    instance encodeDate :: EncodeJson Date
-
-    instance encodeJsonDate :: EncodeJson JSDate
-
-
-### Values
-
-    jsDate2Json :: JSDate -> Json
-
-    json2JSDate :: Json -> Maybe JSDate
 
 
 

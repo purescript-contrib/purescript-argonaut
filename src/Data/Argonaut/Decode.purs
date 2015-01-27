@@ -32,14 +32,16 @@ module Data.Argonaut.Decode
     )
   import Data.Argonaut.Encode (encodeJson, EncodeJson)
   import Data.Either (either, Either(..))
-  import Data.Maybe (maybe, Maybe(..))
+  import Data.Maybe (maybe, Maybe(..), fromMaybe)
   import Data.Foldable (Foldable, foldl, foldMap, foldr)
   import Data.Traversable (Traversable, traverse)
   import Data.Tuple (Tuple(..), uncurry)
   import Data.String
   import Data.Char(Char())
+  import Data.Function
   import Control.Alt
   import Data.Traversable (traverse)
+  import qualified Data.Date as Date
 
   import qualified Data.StrMap as M
   import qualified Data.Map as Map
@@ -107,3 +109,30 @@ module Data.Argonaut.Decode
 
   -- arrayMembersL :: forall a. (DecodeJson a, EncodeJson a) => IndexedTraversalP JNumber Json a
   -- arrayMembersL = decodeL >>> traversed >>> arrayL
+
+
+  foreign import json2JSDateImpl """
+  function json2JSDateImpl(json, just, nothing) {
+    if (json && json.constructor && json.constructor == Date) {
+      return just(json);
+    } else {
+      return nothing;
+    }
+  }
+  """ :: forall a. Fn3 Json (a -> Maybe a) (Maybe a) (Maybe Date.JSDate)
+
+  json2JSDate :: Json -> Maybe Date.JSDate
+  json2JSDate json = runFn3 json2JSDateImpl json (Just) (Nothing)
+
+  
+  instance decodeJsonJSDate :: DecodeJson Date.JSDate where
+    decodeJson jsdate =
+      case json2JSDate jsdate of
+        Nothing -> Left "Incorrect jsdate"
+        Just date -> Right date
+
+  instance decodeJsonDate :: DecodeJson Date.Date where
+    decodeJson date = fromMaybe (Left "Incorrect date") do
+      jsdate <- decodeJson date # either (const Nothing) Just
+      date <- Date.fromJSDate jsdate
+      return $ Right date
