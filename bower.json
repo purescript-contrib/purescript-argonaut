@@ -18,7 +18,8 @@
     "purescript-control": "~0.2.1",
     "purescript-lens": "~0.5.0",
     "purescript-optic": "~0.3.0",
-    "purescript-index": "~0.2.0"
+    "purescript-index": "~0.2.0",
+    "purescript-datetime": "~0.2.0"
   },
   "devDependencies": {
     "purescript-strongcheck": "~0.6.0"
