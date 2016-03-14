@@ -1,36 +1,45 @@
 module Examples.Data.Argonaut.Record where
 
-  import Data.Argonaut ((~>), (:=), (.?), jsonEmptyObject, printJson)
-  import Data.Argonaut.Encode (EncodeJson, encodeJson)
-  import Data.Argonaut.Decode (DecodeJson, decodeJson)
-  import Data.Maybe (Maybe(..))
+import Prelude
 
-  import Debug.Trace (print)
+import Data.Argonaut.Core
+import Data.Argonaut.Combinators ((~>), (:=), (.?))
+import Data.Argonaut.Encode
+import Data.Argonaut.Decode
+import Data.Maybe
+import Data.Either
 
-  newtype Foo = Foo
-    { foo :: Maybe Number
-    , bar :: Maybe String
-    }
 
-  instance decodeJsonFoo :: DecodeJson Foo where
-    decodeJson json = do
-      obj <- decodeJson json
-      foo <- obj .? "foo"
-      bar <- obj .? "bar"
-      pure $ Foo {foo: foo, bar: bar}
+import Data.Traversable (traverse)
 
-  instance encodeJsonFoo :: EncodeJson Foo where
-    encodeJson (Foo f)
-      =  "bar" := f.bar
-      ~> "foo" := f.foo
-      ~> jsonEmptyObject
+newtype BlogPost = BlogPost
+  { id         :: Int
+  , title      :: String
+  , categories :: String
+  , content    :: String
+  }
 
-  instance showFoo :: Show Foo where
-    show (Foo f) = "Foo {foo: " ++ show f.foo ++ ", bar:" ++ show f.bar ++ "}"
+instance decodeJsonBlogPost :: DecodeJson BlogPost where
+  decodeJson json = do
+    obj        <- decodeJson json
+    id         <- obj .? "id"
+    title      <- obj .? "title"
+    categories <- obj .? "categories"
+    content    <- obj .? "content"
+    pure $ BlogPost {id: id, title: title, categories: categories, content: content}
 
-  foo :: Foo
-  foo = Foo {foo: Just 42, bar: Nothing}
+instance encodeJson :: EncodeJson BlogPost where
+  encodeJson (BlogPost post)
+    =  "id"         := post.id
+    ~> "title"      := post.title
+    ~> "categories" := post.categories
+    ~> "content"    := post.content
+    ~> jsonEmptyObject
 
-  main = do
-    print $ "raw foo is: " ++ show foo
-    print $ "encoded foo is: " ++ printJson (encodeJson foo)
+type BlogPostArray = Array BlogPost
+
+decodeBlogPostArray :: Json -> Either String BlogPostArray
+decodeBlogPostArray json = decodeJson json >>= traverse decodeJson
+
+encodeBlogPostArray :: BlogPostArray -> Json
+encodeBlogPostArray bpa = fromArray $ encodeJson <$> bpa
