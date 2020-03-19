@@ -6,9 +6,8 @@
     "test": "pulp build --include examples -- --censor-lib --strict && pulp test"
   },
   "devDependencies": {
-    "pulp": "^12.3.1",
-    "purescript-psa": "^0.6.0",
-    "purescript": "^0.12.3",
-    "rimraf": "^2.6.2"
+    "pulp": "^14.0.0",
+    "purescript-psa": "^0.7.3",
+    "rimraf": "^3.0.2"
   }
 }
