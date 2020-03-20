@@ -1,9 +1,20 @@
 /.*
 !/.gitignore
 !/.github
+!/.travis.yml
+
+# Dependencies
+bower_components
+node_modules
+
+# Generated files
+output
+generated-docs
+
+# Lockfiles
+package-lock.json
+*.lock
+
+# Extra files
 !/.jscsrc
 !/.jshintrc
-!/.travis.yml
-/bower_components/
-/node_modules/
-/output/
