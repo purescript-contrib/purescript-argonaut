@@ -1,0 +1,23 @@
+name: "Stale"
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v3
+        env:
+          days-until-stale: 60
+          days-until-close: 14
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message: "This issue is stale because it has been open for ${{ env.days-until-stale }} days with no activity. Remove the stale label or comment to keep this issue open. Otherwise, this issue will be closed in ${{ env.days-until-close }} days."
+          stale-pr-message: "This pull request is stale because it has been open for ${{ env.days-until-stale }} days with no activity. Remove the stale label or comment to keep this pull request open. Otherwise, this pull request will be closed in ${{ env.days-until-close }} days."
+          days-before-stale: ${{ env.days-until-stale }}
+          days-before-close: ${{ env.days-until-close }}
+          stale-issue-label: "stale"
+          stale-pr-label: "stale"
+          exempt-pr-labels: "breaking change"
