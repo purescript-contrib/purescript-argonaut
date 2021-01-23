@@ -5,14 +5,16 @@ Notable changes to this project are documented in this file. The format is based
 ## [Unreleased]
 
 Breaking changes (😱!!!):
+- Added support for PureScript 0.14 and dropped support for all previous versions (#52)
 
 New features:
 
 Bugfixes:
 
 Other improvements:
-
-- Re-exported `Data.Argonaut.Core.stringifyWithIndent`.
+- Re-exported `Data.Argonaut.Core.stringifyWithIndent` (#51)
+- Changed default branch to `main` from `master`
+- Updated to comply with Contributors library guidelines by adding new issue and pull request templates, updating documentation, and migrating to Spago for local development and CI (#48, #49)
 
 ## [v7.0.0](https://github.com/purescript-contrib/purescript-argonaut/releases/tag/v7.0.0) - 2020-06-20
 
@@ -69,15 +71,9 @@ Updates for the 1.0 core libraries.
 
 ## [v0.9.0](https://github.com/purescript-contrib/purescript-argonaut/releases/tag/v0.9.0) - 2015-09-08
 
-
-
 ## [v0.8.0](https://github.com/purescript-contrib/purescript-argonaut/releases/tag/v0.8.0) - 2015-07-14
 
-
-
 ## [v0.7.0](https://github.com/purescript-contrib/purescript-argonaut/releases/tag/v0.7.0) - 2015-07-10
-
-
 
 ## [v0.6.0](https://github.com/purescript-contrib/purescript-argonaut/releases/tag/v0.6.0) - 2015-05-19
 
@@ -90,5 +86,5 @@ Bump dependencies
 ## [v0.4.0](https://github.com/purescript-contrib/purescript-argonaut/releases/tag/v0.4.0) - 2015-02-21
 
 **This release requires PureScript v0.6.8 or later**
-- Updated dependencies
 
+- Updated dependencies
