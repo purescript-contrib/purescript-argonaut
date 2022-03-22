@@ -11,18 +11,18 @@
   },
   "license": "MIT",
   "dependencies": {
-    "purescript-argonaut-codecs": "^8.0.0",
-    "purescript-argonaut-core": "^6.0.0",
-    "purescript-argonaut-traversals": "^9.0.0"
+    "purescript-argonaut-codecs": "main",
+    "purescript-argonaut-core": "main",
+    "purescript-argonaut-traversals": "main"
   },
   "devDependencies": {
-    "purescript-console": "^5.0.0",
-    "purescript-effect": "^3.0.0",
-    "purescript-either": "^5.0.0",
-    "purescript-foldable-traversable": "^5.0.0",
-    "purescript-maybe": "^5.0.0",
-    "purescript-prelude": "^5.0.0",
-    "purescript-quickcheck": "^7.0.0",
-    "purescript-strings": "^5.0.0"
+    "purescript-console": "master",
+    "purescript-effect": "master",
+    "purescript-either": "master",
+    "purescript-foldable-traversable": "master",
+    "purescript-maybe": "master",
+    "purescript-prelude": "master",
+    "purescript-quickcheck": "master",
+    "purescript-strings": "master"
   }
 }
