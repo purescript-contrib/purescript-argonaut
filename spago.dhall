@@ -9,7 +9,6 @@
   , "foldable-traversable"
   , "maybe"
   , "prelude"
-  , "psci-support"
   , "quickcheck"
   , "strings"
   ]
