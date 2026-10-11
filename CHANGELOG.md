@@ -11,6 +11,10 @@ New features:
 Bugfixes:
 
 Other improvements:
+
+## [v9.0.1](https://github.com/purescript-contrib/purescript-argonaut/releases/tag/v9.0.1) - 2026-10-11
+
+Other improvements:
 - Migrated to registry-backed Spago and updated CI tooling.
 
 ## [v9.0.0](https://github.com/purescript-contrib/purescript-argonaut/releases/tag/v9.0.0) - 2022-04-27
