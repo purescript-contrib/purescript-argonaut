@@ -1,0 +1,30 @@
+package:
+  name: argonaut
+  description: PureScript's implementation of Argonaut
+  publish:
+    version: 9.0.1
+    license: MIT
+    location:
+      githubOwner: purescript-contrib
+      githubRepo: purescript-argonaut
+  build:
+    strict: true
+  dependencies:
+    - argonaut-codecs: ">=9.0.0 <10.0.0"
+    - argonaut-core: ">=7.0.0 <8.0.0"
+    - argonaut-traversals: ">=10.0.0 <11.0.0"
+  test:
+    main: Test.Main
+    dependencies:
+      - console
+      - effect
+      - either
+      - foldable-traversable
+      - maybe
+      - prelude
+      - quickcheck
+      - strings
+
+workspace:
+  packageSet:
+    registry: 81.4.0
